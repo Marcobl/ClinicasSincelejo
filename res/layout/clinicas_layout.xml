@@ -1,0 +1,85 @@
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:shrinkColumns="*"
+        android:stretchColumns="*"
+        android:padding="10dp" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nombre_clinica2" />
+
+            <TextView
+                android:id="@+id/textView2_nmbreClinica"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 />
+
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/idn_clinica2" />
+
+            <TextView
+                android:id="@+id/textView4_idnClinica"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 />
+
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nivel_clinica2" />
+
+            <TextView
+                android:id="@+id/textView5_nivelClinica"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 />
+
+        </TableRow>
+        
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dircc_clinica2" />
+
+            <TextView
+                android:id="@+id/textView7_drccClinica"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                 />
+
+        </TableRow>
+    </TableLayout>
+

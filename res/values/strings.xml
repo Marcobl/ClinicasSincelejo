@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Clinicas Sincelejo</string>
+    <string name="action_settings">Settings</string>
+    <string name="radio_administrador">Administrador</string>
+    <string name="radio_usuario">Usuario</string>
+    <string name="ingresar">Ingresar</string>
+    <string name="opciones">Seleccione opción</string>
+    <string name="nombre_clinica">Nombre :</string>
+    <string name="idn_clinica">Identificacion :</string>
+    <string name="nivel_clinica">Nivel :</string>
+    <string name="dircc_clinica">Dirección :</string>
+    <string-array name="niveles">
+        <item >Alto</item>
+        <item >Medio</item>
+        <item >Bajo</item>
+    </string-array>
+    <string name="guardar">Guardar</string>
+    <string name="elminiar">Eliminar</string>
+    <string name="actualizar">Actualizar</string>
+    <string name="name_admin">Clinicas Sincelejo - Administrador</string>
+    <string name="nombre_clinica2">Nombre :</string>
+    <string name="idn_clinica2">Identificacion :</string>
+    <string name="nivel_clinica2">Nivel :</string>
+    <string name="dircc_clinica2">Dirección :</string>
+    <string name="listar_clinicas">Listar Clinicas</string>
+    
+    
+</resources>
