@@ -93,11 +93,11 @@ public class ClinicaListAdapter extends BaseAdapter{
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
 		convertView = this.inflater.inflate(R.layout.clinicas_layout, null);
-		
-		TextView nombre = (TextView)findViewById(R.id.textView2_nmbreClinica);
-		TextView idntf = (TextView)findViewById(R.id.textView4_idnClinica);
-		TextView nivel = (TextView)findViewById(R.id.textView5_nivelClinica);
-		TextView dir = (TextView)findViewById(R.id.textView7_drccClinica);
+	
+		TextView nombre = (TextView)convertView.findViewById(R.id.textView2_nmbreClinica);
+		TextView idntf = (TextView)convertView.findViewById(R.id.textView4_idnClinica);
+		TextView nivel = (TextView)convertView.findViewById(R.id.textView5_nivelClinica);
+		TextView dir = (TextView)convertView.findViewById(R.id.textView7_drccClinica);
 		
 		try {
 			nombre.setText(list.get(position).getNombre());
