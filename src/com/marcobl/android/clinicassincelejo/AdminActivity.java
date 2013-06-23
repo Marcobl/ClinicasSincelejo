@@ -1,11 +1,7 @@
 package com.marcobl.android.clinicassincelejo;
 
-import com.marcobl.android.clinicassincelejo.bd.ClinicasSQLiteHelper;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,17 +19,17 @@ public class AdminActivity extends Activity {
 	
 	private Button guardar;
 	private Button actualizar;
-	private Button eliminar;
+	private Button eliminar;	
 	
-	private ContentValues values;
+	private ClinicaDataSource dataSource;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_administrador);
 		
-		ClinicasSQLiteHelper bdd = new ClinicasSQLiteHelper(AdminActivity.this, "BDClientes", null, 1);
-		final SQLiteDatabase database = bdd.getWritableDatabase();
+		dataSource = new ClinicaDataSource(this);
+		dataSource.open();
 		
 		nombre = (EditText)findViewById(R.id.editText_nombre);
 		idntf = (EditText)findViewById(R.id.editText_idnt);
@@ -43,61 +39,78 @@ public class AdminActivity extends Activity {
 		guardar = (Button)findViewById(R.id.button_guardar);
 		actualizar = (Button)findViewById(R.id.button_actualizar);
 		eliminar = (Button)findViewById(R.id.button_eliminar);
-		
+	
 		guardar.setOnClickListener(new OnClickListener() {
-						
+			
+			@Override
 			public void onClick(View v) {
-				try {
-					if (nombre.getText().toString().isEmpty()||idntf.getText().toString().isEmpty()||
-							dircc.getText().toString().isEmpty()) {
+				if (nombre.getText().toString().isEmpty()||idntf.getText().toString().isEmpty()|| 
+					dircc.getText().toString().isEmpty()){
+					Toast.makeText(AdminActivity.this, "Debe ingresar todos los campos", Toast.LENGTH_SHORT).show();
+					
+				} else {
+					try {
 						
-						Toast.makeText(AdminActivity.this, "No debe dejar ningun campo vacio", Toast.LENGTH_SHORT);
-						
-						
-					} else {
-						
-						values.put("nombre", nombre.getText().toString());
-						values.put("identificacion", idntf.getText().toString());
-						values.put("nivel",nivel.getSelectedItem().toString());
-						values.put("direccion", dircc.getText().toString());
-						
-						database.insert("clinica", null, values);
-						
-						
-						Toast.makeText(AdminActivity.this, "Clinica ingresada", Toast.LENGTH_SHORT).show();
+						dataSource.crearClinica(nombre.getText().toString(), idntf.getText().toString(), 
+								nivel.getSelectedItem().toString(), dircc.getText().toString());
+				
 						nombre.setText("");
 						idntf.setText("");
 						dircc.setText("");
+						Toast.makeText(AdminActivity.this, "Agregado", Toast.LENGTH_SHORT).show();
+						
+					} catch (Exception e) {
+						Toast.makeText(AdminActivity.this, "Error", Toast.LENGTH_SHORT).show();
+					}					
 
-					}
-					
-				} catch (Exception e) {
-					
-				}
+				}				
 				
 			}
 		});
 		
 		eliminar.setOnClickListener(new OnClickListener() {
 			
-			
 			@Override
 			public void onClick(View v) {
-				try {
-					if (nombre.getText().toString().isEmpty()) {
-						Toast.makeText(AdminActivity.this, "Debe ingresar parametro de indetificacion para eliminar", Toast.LENGTH_SHORT).show();
-					} else {
-						database.delete("clinica", "identificacion="+idntf.getText().toString().trim(), null);
-					}
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
+				if (idntf.getText().toString().isEmpty()) {
+					Toast.makeText(AdminActivity.this, "Debe ingresar la identificacion para eliminar la clinica", Toast.LENGTH_SHORT).show();
+				} else {
+					try {
+						
+						dataSource.eliminarClinica(idntf.getText().toString());
+						Toast.makeText(AdminActivity.this, "Clinica eliminada", Toast.LENGTH_SHORT).show();
+						nombre.setText("");
+						idntf.setText("");
+						dircc.setText("");
+						
+					} catch (Exception e) {
+						Toast.makeText(AdminActivity.this, "Clinica no encontrada por Identificacion", Toast.LENGTH_SHORT).show();
+					}			
+
+				}				
 			}
 		});
 		
-		
+		actualizar.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				if (idntf.getText().toString().isEmpty()) {
+					Toast.makeText(AdminActivity.this, "Debe ingresar la identificacion para consultar la clinica", Toast.LENGTH_SHORT).show();
+				} else {
+					try {						
+						Clinica clin = dataSource.consultarClinica(idntf.getText().toString());
+						nombre.setText(clin.getNombre());
+						
+						dircc.setText(clin.getDireccion());
+						
+					} catch (Exception e) {
+						Toast.makeText(AdminActivity.this, "Clinica no encontrada por Identificacion", Toast.LENGTH_SHORT).show();
+					}	
+				}				
+			}
+		});
+	
 		
 	}
 	

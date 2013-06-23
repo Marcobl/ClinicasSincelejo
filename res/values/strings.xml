@@ -18,7 +18,7 @@
     </string-array>
     <string name="guardar">Guardar</string>
     <string name="elminiar">Eliminar</string>
-    <string name="actualizar">Actualizar</string>
+    <string name="actualizar">Consultar</string>
     <string name="name_admin">Clinicas Sincelejo - Administrador</string>
     <string name="nombre_clinica2">Nombre :</string>
     <string name="idn_clinica2">Identificacion :</string>

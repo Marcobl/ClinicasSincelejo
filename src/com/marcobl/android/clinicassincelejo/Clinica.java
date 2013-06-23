@@ -5,17 +5,9 @@ public class Clinica {
 	private String nombre;
 	private String idntfccion;
 	private String nivel;
-	private String direccion;
+	private String direccion;		
 	
 	
-	
-	public Clinica(String nombre, String idntfccion, String nivel,
-			String direccion) {
-		this.nombre = nombre;
-		this.idntfccion = idntfccion;
-		this.nivel = nivel;
-		this.direccion = direccion;
-	}
 	public String getNombre() {
 		return nombre;
 	}
