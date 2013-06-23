@@ -11,7 +11,6 @@ public class Clinica {
 	
 	public Clinica(String nombre, String idntfccion, String nivel,
 			String direccion) {
-		super();
 		this.nombre = nombre;
 		this.idntfccion = idntfccion;
 		this.nivel = nivel;

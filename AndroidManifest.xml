@@ -28,6 +28,13 @@
             >
             
         </activity>
+        <activity 
+            android:name="com.marcobl.android.clinicassincelejo.UserActivity"
+            android:label="@string/name_admin"
+            >
+            
+        </activity>
+        
     </application>
 
 </manifest>

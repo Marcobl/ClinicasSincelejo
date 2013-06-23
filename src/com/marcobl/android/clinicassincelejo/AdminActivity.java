@@ -7,7 +7,6 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,7 +32,7 @@ public class AdminActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_administrador);
 		
-		ClinicasSQLiteHelper bdd = new ClinicasSQLiteHelper(this, "BDClientes", null, 1);
+		ClinicasSQLiteHelper bdd = new ClinicasSQLiteHelper(AdminActivity.this, "BDClientes", null, 1);
 		final SQLiteDatabase database = bdd.getWritableDatabase();
 		
 		nombre = (EditText)findViewById(R.id.editText_nombre);
@@ -45,15 +44,15 @@ public class AdminActivity extends Activity {
 		actualizar = (Button)findViewById(R.id.button_actualizar);
 		eliminar = (Button)findViewById(R.id.button_eliminar);
 		
-		guardar.setOnClickListener(new OnClickListener() {			
-			
-			@SuppressLint("ShowToast")
+		guardar.setOnClickListener(new OnClickListener() {
+						
 			public void onClick(View v) {
 				try {
-					if (nombre.getText().toString().equals("")||idntf.getText().toString().equals("")||
-							dircc.getText().toString().equals("")) {
+					if (nombre.getText().toString().isEmpty()||idntf.getText().toString().isEmpty()||
+							dircc.getText().toString().isEmpty()) {
 						
-						Toast.makeText(AdminActivity.this, "No debe dejar ningun campo vacio", Toast.LENGTH_SHORT).show();
+						Toast.makeText(AdminActivity.this, "No debe dejar ningun campo vacio", Toast.LENGTH_SHORT);
+						
 						
 					} else {
 						
@@ -63,6 +62,7 @@ public class AdminActivity extends Activity {
 						values.put("direccion", dircc.getText().toString());
 						
 						database.insert("clinica", null, values);
+						
 						
 						Toast.makeText(AdminActivity.this, "Clinica ingresada", Toast.LENGTH_SHORT).show();
 						nombre.setText("");
@@ -80,7 +80,7 @@ public class AdminActivity extends Activity {
 		
 		eliminar.setOnClickListener(new OnClickListener() {
 			
-			@SuppressLint("ShowToast")
+			
 			@Override
 			public void onClick(View v) {
 				try {

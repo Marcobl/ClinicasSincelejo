@@ -11,8 +11,7 @@ import android.widget.RadioButton;
 public class MainActivity extends Activity {
 
 	
-	private RadioButton rd_admin;
-	private RadioButton rd_user;
+	private RadioButton rd_admin;	
 	private Button bt_acceder;
 	private Intent intent;
 	
@@ -23,7 +22,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		 bt_acceder = (Button)findViewById(R.id.button_acceder);
 		 rd_admin = (RadioButton)findViewById(R.id.rbutton_admin);
-		 rd_user = (RadioButton)findViewById(R.id.rbutton_user);
+		 
 		 
 		 bt_acceder.setOnClickListener(new OnClickListener(){
 			 public void onClick(View arg0){
@@ -31,6 +30,8 @@ public class MainActivity extends Activity {
 					intent = new Intent(MainActivity.this, AdminActivity.class);
 					startActivity(intent);
 				} else {
+					intent = new Intent(MainActivity.this, UserActivity.class);
+					startActivity(intent);
 
 				}
 				 
