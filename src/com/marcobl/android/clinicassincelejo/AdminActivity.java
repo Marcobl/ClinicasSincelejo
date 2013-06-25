@@ -58,6 +58,7 @@ public class AdminActivity extends Activity {
 						idntf.setText("");
 						dircc.setText("");
 						Toast.makeText(AdminActivity.this, "Agregado", Toast.LENGTH_SHORT).show();
+						nombre.requestFocus();
 						
 					} catch (Exception e) {
 						Toast.makeText(AdminActivity.this, "Error", Toast.LENGTH_SHORT).show();

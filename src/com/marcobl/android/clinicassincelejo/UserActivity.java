@@ -92,18 +92,29 @@ public class ClinicaListAdapter extends BaseAdapter{
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		
-		convertView = this.inflater.inflate(R.layout.clinicas_layout, null);
-	
-		TextView nombre = (TextView)convertView.findViewById(R.id.textView2_nmbreClinica);
-		TextView idntf = (TextView)convertView.findViewById(R.id.textView4_idnClinica);
-		TextView nivel = (TextView)convertView.findViewById(R.id.textView5_nivelClinica);
-		TextView dir = (TextView)convertView.findViewById(R.id.textView7_drccClinica);
+		ViewHolder holder;
 		
+		// Optimiza el ListView para no volver a crearlo cada vez que se hace scroll  
+		if (convertView == null) {
+			convertView = this.inflater.inflate(R.layout.clinicas_layout, null);
+			
+			holder = new ViewHolder();
+			holder.nombre = (TextView)convertView.findViewById(R.id.textView2_nmbreClinica);
+			holder.idntf = (TextView)convertView.findViewById(R.id.textView4_idnClinica);
+			holder.nivel = (TextView)convertView.findViewById(R.id.textView5_nivelClinica);
+			holder.direccion = (TextView)convertView.findViewById(R.id.textView7_drccClinica);
+			
+			convertView.setTag(holder);
+		}else{
+			
+			holder = (ViewHolder)convertView.getTag();
+		}	
+					
 		try {
-			nombre.setText(list.get(position).getNombre());
-			idntf.setText(list.get(position).getIdntfccion());
-			nivel.setText(list.get(position).getNivel());
-			dir.setText(list.get(position).getDireccion());
+			holder.nombre.setText(list.get(position).getNombre());
+			holder.idntf.setText(list.get(position).getIdntfccion());
+			holder.nivel.setText(list.get(position).getNivel());
+			holder.direccion.setText(list.get(position).getDireccion());
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -112,6 +123,16 @@ public class ClinicaListAdapter extends BaseAdapter{
 		return convertView;
 	}
 	
+}
+
+/* clase que guarda la referencia de los de los componentes para no volver 
+   a crearlos cada vez que se hace scroll en la lista*/
+static class ViewHolder{
+	
+	TextView nombre;
+	TextView idntf;
+	TextView nivel;
+	TextView direccion;
 }
 
 
